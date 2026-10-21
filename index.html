@@ -541,6 +541,23 @@ body::before {
 }
 .price-cell.added .price-add { color: #25D366; opacity: 1; }
 
+.retail-add-btn {
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.retail-add-btn:hover { border-color: var(--accent); background: rgba(201,169,110,0.25); }
+
 /* Cart floating button */
 .cart-fab {
   position: fixed;
@@ -965,6 +982,7 @@ function renderCard(p) {
     '<div class="card-retail">' +
       '<div class="card-retail-label">Frasco entero (' + p.m + ' ml)</div>' +
       '<div class="card-retail-value">' + fmt(p.r) + '</div>' +
+      (p.r != null ? '<button class="retail-add-btn" onclick="addToCart(\'' + pId + '\',' + p.m + ',' + p.r + ',event)">+ Agregar</button>' : '') +
     '</div>' +
   '</div>';
 }
