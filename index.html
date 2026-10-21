@@ -371,7 +371,7 @@ body::before {
 /* Scroll to top */
 .scroll-top {
   position: fixed;
-  bottom: 24px;
+  bottom: max(24px, env(safe-area-inset-bottom, 0px) + 24px);
   right: max(16px, env(safe-area-inset-right, 0px));
   width: 40px;
   height: 40px;
@@ -393,7 +393,7 @@ body::before {
 /* WhatsApp floating button */
 .wa-btn {
   position: fixed;
-  bottom: 24px;
+  bottom: max(24px, env(safe-area-inset-bottom, 0px) + 24px);
   left: max(16px, env(safe-area-inset-left, 0px));
   height: 48px;
   border-radius: 24px;
