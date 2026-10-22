@@ -302,6 +302,16 @@ body::before {
   white-space: nowrap;
   flex-shrink: 0;
 }
+.card-body { display: flex; gap: 14px; }
+.card-img {
+  width: 64px;
+  height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: var(--bg-brand);
+}
+.card-info { flex: 1; min-width: 0; }
 .card-prices {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -971,9 +981,14 @@ const DATA = {"a":[{"n":"Afnan 9AM Blanco","b":"Afnan","m":100,"p2":3500,"p5":60
 
 const fmt = n => n == null ? '—' : '$' + n.toLocaleString('es-AR');
 
+/* Mapa de imágenes: clave "Marca|Nombre" → URL de imagen */
+var IMAGES = {};
+
 function renderCard(p) {
   var gLabel = p.g === 'M' ? '♂' : p.g === 'F' ? '♀' : '⚤';
   var pId = (p.b + '|' + p.n).replace(/'/g, "\\'");
+  var imgKey = p.b + '|' + p.n;
+  var hasImg = IMAGES[imgKey];
   function mlCell(ml, price) {
     if (price == null) return '<div class="price-cell" style="opacity:0.35;cursor:default"><div class="price-label">' + ml + ' ml</div><div class="price-value">—</div></div>';
     return '<div class="price-cell" onclick="addToCart(\'' + pId + '\',' + ml + ',' + price + ',event)">' +
@@ -981,12 +996,17 @@ function renderCard(p) {
       '<div class="price-add">+ Agregar</div></div>';
   }
   return '<div class="card">' +
-    '<div class="card-top">' +
-      '<div class="card-name">' + p.n + ' <span class="card-tags">' + gLabel + '</span></div>' +
-      '<div class="card-ml">' + p.m + ' ml</div>' +
-    '</div>' +
-    '<div class="card-prices">' +
-      mlCell(2, p.p2) + mlCell(5, p.p5) + mlCell(10, p.p10) +
+    '<div class="card-body">' +
+      (hasImg ? '<img class="card-img" src="' + IMAGES[imgKey] + '" alt="' + p.n + '" loading="lazy">' : '') +
+      '<div class="card-info">' +
+        '<div class="card-top">' +
+          '<div class="card-name">' + p.n + ' <span class="card-tags">' + gLabel + '</span></div>' +
+          '<div class="card-ml">' + p.m + ' ml</div>' +
+        '</div>' +
+        '<div class="card-prices">' +
+          mlCell(2, p.p2) + mlCell(5, p.p5) + mlCell(10, p.p10) +
+        '</div>' +
+      '</div>' +
     '</div>' +
     '<div class="card-retail">' +
       '<div class="card-retail-label">Frasco entero (' + p.m + ' ml)</div>' +
