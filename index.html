@@ -982,7 +982,9 @@ const DATA = {"a":[{"n":"Afnan 9AM Blanco","b":"Afnan","m":100,"p2":3500,"p5":60
 const fmt = n => n == null ? '—' : '$' + n.toLocaleString('es-AR');
 
 /* Mapa de imágenes: clave "Marca|Nombre" → URL de imagen */
-var IMAGES = {};
+var IMAGES = {
+"Afnan|Afnan 9AM Blanco":"img/afnan-9am-blanco.png"
+};
 
 function renderCard(p) {
   var gLabel = p.g === 'M' ? '♂' : p.g === 'F' ? '♀' : '⚤';
