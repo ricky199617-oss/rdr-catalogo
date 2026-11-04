@@ -365,9 +365,10 @@ body::before {
   font-variant-numeric: tabular-nums;
 }
 .price-cuotas-tag {
-  font-size: 9px;
-  color: var(--fg-dim);
-  margin-top: 1px;
+  font-size: 10px;
+  color: #4CAF50;
+  font-weight: 500;
+  margin-top: 2px;
   letter-spacing: 0.03em;
 }
 .cash-row {
@@ -395,9 +396,11 @@ body::before {
   font-variant-numeric: tabular-nums;
 }
 .retail-cuotas-tag {
-  font-size: 8px;
-  color: var(--fg-dim);
+  font-size: 11px;
+  color: #4CAF50;
+  font-weight: 500;
   letter-spacing: 0.03em;
+  margin-top: 2px;
 }
 .retail-cash {
   width: 100%;
@@ -1668,7 +1671,7 @@ function renderCard(p) {
     if (cuotasPrice == null) return '<div class="price-cell" style="opacity:0.35;cursor:default"><div class="price-label">' + ml + ' ml</div><div class="price-value">—</div></div>';
     return '<div class="price-cell" onclick="addToCart(\'' + pId + '\',' + ml + ',' + cuotasPrice + ',event)">' +
       '<div class="price-label">' + ml + ' ml</div><div class="price-value">' + fmt(cuotasPrice) + '</div>' +
-      '<div class="price-cuotas-tag">3 cuotas s/i</div>' +
+      '<div class="price-cuotas-tag">3 cuotas de ' + fmt(Math.round(cuotasPrice / 3)) + '</div>' +
       '<div class="price-add">+ Agregar</div></div>';
   }
   // Build cash prices string for the green row
@@ -1695,7 +1698,7 @@ function renderCard(p) {
     '</div>' +
     '<div class="card-retail">' +
       '<div class="card-retail-label">Frasco entero (' + p.m + ' ml)</div>' +
-      (p.cr != null ? '<div class="card-retail-value">' + fmt(p.cr) + '<div class="retail-cuotas-tag">3 cuotas s/i</div></div>' : '<div class="card-retail-value">' + fmt(p.r) + '</div>') +
+      (p.cr != null ? '<div class="card-retail-value">' + fmt(p.cr) + '<div class="retail-cuotas-tag">3 cuotas sin interés de ' + fmt(Math.round(p.cr / 3)) + '</div></div>' : '<div class="card-retail-value">' + fmt(p.r) + '</div>') +
       (p.cr != null ? '<button class="retail-add-btn" onclick="addToCart(\'' + pId + '\',' + p.m + ',' + p.cr + ',event)">+ Agregar</button>' : (p.r != null ? '<button class="retail-add-btn" onclick="addToCart(\'' + pId + '\',' + p.m + ',' + p.r + ',event)">+ Agregar</button>' : '')) +
       (p.r != null && p.cr != null ? '<div class="retail-cash">💰 Efectivo/transferencia: ' + fmt(p.r) + '</div>' : '') +
     '</div>' +
