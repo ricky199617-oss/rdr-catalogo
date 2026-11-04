@@ -365,10 +365,9 @@ body::before {
   font-variant-numeric: tabular-nums;
 }
 .price-cuotas-tag {
-  font-size: 10px;
-  color: #4CAF50;
-  font-weight: 500;
-  margin-top: 2px;
+  font-size: 9px;
+  color: var(--fg-dim);
+  margin-top: 1px;
   letter-spacing: 0.03em;
 }
 .cash-row {
@@ -1671,7 +1670,7 @@ function renderCard(p) {
     if (cuotasPrice == null) return '<div class="price-cell" style="opacity:0.35;cursor:default"><div class="price-label">' + ml + ' ml</div><div class="price-value">—</div></div>';
     return '<div class="price-cell" onclick="addToCart(\'' + pId + '\',' + ml + ',' + cuotasPrice + ',event)">' +
       '<div class="price-label">' + ml + ' ml</div><div class="price-value">' + fmt(cuotasPrice) + '</div>' +
-      '<div class="price-cuotas-tag">3 cuotas de ' + fmt(Math.round(cuotasPrice / 3)) + '</div>' +
+      '<div class="price-cuotas-tag">3 cuotas s/i</div>' +
       '<div class="price-add">+ Agregar</div></div>';
   }
   // Build cash prices string for the green row
